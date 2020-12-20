@@ -3,5 +3,25 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+  
+  <Target Name="client-app" BeforeTargets="ComputeFilesToPublish">
+    <Exec Command="npm install" WorkingDirectory="client-app"></Exec>
+    <Exec Command="npm run build" WorkingDirectory="client-app"></Exec>
+  </Target>
+  
+  <ItemGroup>
+    <Compile Remove="wwwroot\client-app\img\**" />
+    <Content Remove="wwwroot\client-app\img\**" />
+    <EmbeddedResource Remove="wwwroot\client-app\img\**" />
+    <None Remove="wwwroot\client-app\img\**" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="client-app\src\assets\NewFolder\" />
+  </ItemGroup>
 
 </Project>
